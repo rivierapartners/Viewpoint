@@ -38,7 +38,7 @@ module Viewpoint::EWS::Types
       from:           [:from, :elems, 0, :mailbox, :elems],
       to_recipients:  [:to_recipients, :elems],
       cc_recipients:  [:cc_recipients, :elems],
-      bcc_recipients:  [:cc_recipients, :elems],
+      bcc_recipients:  [:bcc_recipients, :elems],
       attachments:    [:attachments, :elems],
       importance:     [:importance, :text],
       conversation_index:     [:conversation_index, :text],
@@ -64,6 +64,7 @@ module Viewpoint::EWS::Types
       from:   :build_mailbox_user,
       to_recipients:   :build_mailbox_users,
       cc_recipients:   :build_mailbox_users,
+      bcc_recipients:   :build_mailbox_users,
       attachments: :build_attachments,
     }
 
