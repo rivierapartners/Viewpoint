@@ -38,6 +38,7 @@ module Viewpoint::EWS::Types
       from:           [:from, :elems, 0, :mailbox, :elems],
       to_recipients:  [:to_recipients, :elems],
       cc_recipients:  [:cc_recipients, :elems],
+      bcc_recipients:  [:cc_recipients, :elems],
       attachments:    [:attachments, :elems],
       importance:     [:importance, :text],
       conversation_index:     [:conversation_index, :text],
