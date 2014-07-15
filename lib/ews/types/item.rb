@@ -33,6 +33,8 @@ module Viewpoint::EWS::Types
       conversation_id:[:conversation_id, :attribs, :id],
       categories:     [:categories, :elems],
       internet_message_id:[:internet_message_id, :text],
+      references:[:references, :text],
+      in_reply_to:[:in_reply_to, :text],
       internet_message_headers:[:internet_message_headers, :elems],
       sender:         [:sender, :elems, 0, :mailbox, :elems],
       from:           [:from, :elems, 0, :mailbox, :elems],
