@@ -104,6 +104,40 @@ module Viewpoint::EWS::Types
       end
     end
 
+    def items_since_by_date_time_created(date_time, opts = {})
+      opts = opts.clone
+      unless date_time.kind_of?(Date)
+        raise EwsBadArgumentError, "First argument must be a Date or DateTime"
+      end
+      restr = {:restriction =>
+        {:is_greater_than_or_equal_to =>
+          [{:field_uRI => {:field_uRI=>'item:DateTimeCreated'}},
+            {:field_uRI_or_constant =>{:constant => {:value=>date_time.to_datetime}}}]
+        }}
+        items(opts.merge(restr))
+    end
+
+    def items_between_by_date_time_created(start_date, end_date, opts={})
+      items do |obj|
+        obj.restriction = { :and =>
+          [
+            {:is_greater_than_or_equal_to =>
+              [
+                {:field_uRI => {:field_uRI=>'item:DateTimeCreated'}},
+                {:field_uRI_or_constant=>{:constant => {:value =>start_date}}}
+              ]
+            },
+            {:is_less_than_or_equal_to =>
+              [
+                {:field_uRI => {:field_uRI=>'item:DateTimeCreated'}},
+                {:field_uRI_or_constant=>{:constant => {:value =>end_date}}}
+              ]
+            }
+          ]
+        }
+      end
+    end
+
     # Search on the item subject
     # @param [String] match_str A simple string paramater to match against the
     #   subject.  The search ignores case and does not accept regexes... only strings.
